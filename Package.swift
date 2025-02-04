@@ -10,7 +10,6 @@ let package = Package(
     products: [
         .library(
             name: "VideoLab",
-            type: .dynamic,
             targets: ["VideoLab"]
         )
     ],
@@ -30,26 +29,23 @@ let package = Package(
             ],
             publicHeadersPath: "include",
             cSettings: [
-                .headerSearchPath("."),
                 .headerSearchPath("include"),
                 .headerSearchPath("Render/Operations")
             ],
             cxxSettings: [
-                .headerSearchPath("."),
                 .headerSearchPath("include"),
                 .headerSearchPath("Render/Operations")
             ],
             swiftSettings: [
-                .define("SWIFT_PACKAGE"),
-                .unsafeFlags(["-suppress-warnings"])
+                .define("SWIFT_PACKAGE")
             ],
             linkerSettings: [
-                .linkedFramework("AVFoundation", .when(platforms: [.iOS])),
-                .linkedFramework("Metal", .when(platforms: [.iOS])),
-                .linkedFramework("MetalKit", .when(platforms: [.iOS])),
-                .linkedFramework("CoreMedia", .when(platforms: [.iOS])),
-                .linkedFramework("CoreGraphics", .when(platforms: [.iOS])),
-                .linkedFramework("QuartzCore", .when(platforms: [.iOS]))
+                .linkedFramework("AVFoundation"),
+                .linkedFramework("Metal"),
+                .linkedFramework("MetalKit"),
+                .linkedFramework("CoreMedia"),
+                .linkedFramework("CoreGraphics"),
+                .linkedFramework("QuartzCore")
             ]
         )
     ],
