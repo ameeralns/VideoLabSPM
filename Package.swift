@@ -29,7 +29,7 @@ let package = Package(
                 "Render/Operations"
             ],
             resources: [
-                .copy("VideoLab.bundle")
+                .process("VideoLab.bundle")
             ],
             publicHeadersPath: "include",
             cSettings: [
