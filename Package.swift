@@ -9,6 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "VideoLab",
+            type: .dynamic,
             targets: ["VideoLab"]
         )
     ],
@@ -18,8 +19,29 @@ let package = Package(
             name: "VideoLab",
             dependencies: [],
             path: "Sources/VideoLab",
+            exclude: [
+                "Render/Operations/BlendModeConstants.h",
+                "Render/Operations/OperationConstants.h",
+                "Render/Operations/OperationShaderTypes.h"
+            ],
+            sources: [
+                ".",
+                "Render/Operations"
+            ],
             resources: [
                 .copy("VideoLab.bundle")
+            ],
+            publicHeadersPath: "include",
+            cSettings: [
+                .headerSearchPath("Render/Operations"),
+                .headerSearchPath("include")
+            ],
+            cxxSettings: [
+                .headerSearchPath("Render/Operations"),
+                .headerSearchPath("include")
+            ],
+            swiftSettings: [
+                .define("SWIFT_PACKAGE")
             ],
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
