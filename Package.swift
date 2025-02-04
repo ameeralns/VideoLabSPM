@@ -17,10 +17,17 @@ let package = Package(
         .target(
             name: "VideoLab",
             dependencies: [],
-            path: "VideoLab/VideoLab",
-            exclude: ["Info.plist"],
+            path: "Sources/VideoLab",
             resources: [
                 .copy("VideoLab.bundle")
+            ],
+            linkerSettings: [
+                .linkedFramework("AVFoundation"),
+                .linkedFramework("Metal"),
+                .linkedFramework("MetalKit"),
+                .linkedFramework("CoreMedia"),
+                .linkedFramework("CoreGraphics"),
+                .linkedFramework("QuartzCore")
             ]
         )
     ],
