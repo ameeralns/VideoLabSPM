@@ -3,6 +3,7 @@ import PackageDescription
 
 let package = Package(
     name: "VideoLab",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v11)
     ],
@@ -24,32 +25,31 @@ let package = Package(
                 "Render/Operations/OperationConstants.h",
                 "Render/Operations/OperationShaderTypes.h"
             ],
-            sources: [
-                ".",
-                "Render/Operations"
-            ],
             resources: [
                 .process("VideoLab.bundle")
             ],
             publicHeadersPath: "include",
             cSettings: [
-                .headerSearchPath("Render/Operations"),
-                .headerSearchPath("include")
+                .headerSearchPath("."),
+                .headerSearchPath("include"),
+                .headerSearchPath("Render/Operations")
             ],
             cxxSettings: [
-                .headerSearchPath("Render/Operations"),
-                .headerSearchPath("include")
+                .headerSearchPath("."),
+                .headerSearchPath("include"),
+                .headerSearchPath("Render/Operations")
             ],
             swiftSettings: [
-                .define("SWIFT_PACKAGE")
+                .define("SWIFT_PACKAGE"),
+                .unsafeFlags(["-suppress-warnings"])
             ],
             linkerSettings: [
-                .linkedFramework("AVFoundation"),
-                .linkedFramework("Metal"),
-                .linkedFramework("MetalKit"),
-                .linkedFramework("CoreMedia"),
-                .linkedFramework("CoreGraphics"),
-                .linkedFramework("QuartzCore")
+                .linkedFramework("AVFoundation", .when(platforms: [.iOS])),
+                .linkedFramework("Metal", .when(platforms: [.iOS])),
+                .linkedFramework("MetalKit", .when(platforms: [.iOS])),
+                .linkedFramework("CoreMedia", .when(platforms: [.iOS])),
+                .linkedFramework("CoreGraphics", .when(platforms: [.iOS])),
+                .linkedFramework("QuartzCore", .when(platforms: [.iOS]))
             ]
         )
     ],
