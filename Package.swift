@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "VideoLab",
-            type: .dynamic,
+            type: .static,
             targets: ["VideoLab"]
         )
     ],
@@ -19,10 +19,14 @@ let package = Package(
             name: "VideoLabC",
             dependencies: [],
             path: "Sources/VideoLab/include",
-            sources: ["module.modulemap"],
             publicHeadersPath: ".",
             cSettings: [
-                .headerSearchPath(".")
+                .headerSearchPath("."),
+                .headerSearchPath("../Render/Operations")
+            ],
+            cxxSettings: [
+                .headerSearchPath("."),
+                .headerSearchPath("../Render/Operations")
             ]
         ),
         .target(
@@ -30,37 +34,27 @@ let package = Package(
             dependencies: ["VideoLabC"],
             path: "Sources/VideoLab",
             exclude: [
-                "include/BlendModeConstants.h",
-                "include/OperationConstants.h",
-                "include/OperationShaderTypes.h",
                 "include/module.modulemap"
-            ],
-            sources: [
-                ".",
-                "Audio",
-                "Video",
-                "Text",
-                "Source",
-                "Render/Operations",
-                "Render/Base"
             ],
             resources: [
                 .process("VideoLab.bundle")
             ],
             cSettings: [
                 .headerSearchPath("include"),
-                .headerSearchPath("Render/Operations")
+                .headerSearchPath("Render/Operations"),
+                .headerSearchPath(".")
             ],
             cxxSettings: [
                 .headerSearchPath("include"),
-                .headerSearchPath("Render/Operations")
+                .headerSearchPath("Render/Operations"),
+                .headerSearchPath(".")
             ],
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
                 .define("METAL_AVAILABLE"),
-                .unsafeFlags(["-Xfrontend", "-enable-cross-import-overlays"]),
-                .define("DEBUG", .when(configuration: .debug)),
-                .define("RELEASE", .when(configuration: .release))
+                .unsafeFlags([
+                    "-Xcc", "-fmodule-map-file=Sources/VideoLab/include/module.modulemap"
+                ])
             ],
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
