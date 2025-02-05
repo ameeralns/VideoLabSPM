@@ -1,0 +1,6 @@
+module VideoLabC {
+    header "BlendModeConstants.h"
+    header "OperationConstants.h"
+    header "OperationShaderTypes.h"
+    export *
+} 

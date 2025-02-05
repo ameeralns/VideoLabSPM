@@ -3,7 +3,6 @@ import PackageDescription
 
 let package = Package(
     name: "VideoLab",
-    defaultLocalization: "en",
     platforms: [
         .iOS(.v11)
     ],
@@ -16,28 +15,24 @@ let package = Package(
     dependencies: [],
     targets: [
         .target(
-            name: "VideoLab",
+            name: "VideoLabC",
             dependencies: [],
+            path: "Sources/VideoLab/include",
+            sources: ["module.modulemap"],
+            publicHeadersPath: "."
+        ),
+        .target(
+            name: "VideoLab",
+            dependencies: ["VideoLabC"],
             path: "Sources/VideoLab",
             exclude: [
-                "Render/Operations/BlendModeConstants.h",
-                "Render/Operations/OperationConstants.h",
-                "Render/Operations/OperationShaderTypes.h"
+                "include/BlendModeConstants.h",
+                "include/OperationConstants.h",
+                "include/OperationShaderTypes.h",
+                "include/module.modulemap"
             ],
             resources: [
                 .process("VideoLab.bundle")
-            ],
-            publicHeadersPath: "include",
-            cSettings: [
-                .headerSearchPath("include"),
-                .headerSearchPath("Render/Operations")
-            ],
-            cxxSettings: [
-                .headerSearchPath("include"),
-                .headerSearchPath("Render/Operations")
-            ],
-            swiftSettings: [
-                .define("SWIFT_PACKAGE")
             ],
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
