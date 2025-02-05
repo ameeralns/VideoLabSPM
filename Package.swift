@@ -72,7 +72,8 @@ let package = Package(
                 .linkedFramework("QuartzCore"),
                 .linkedFramework("CoreVideo"),
                 .linkedFramework("Photos"),
-                .linkedFramework("UIKit")
+                .linkedFramework("UIKit"),
+                .linkedFramework("CoreImage")
             ]
         )
     ],
