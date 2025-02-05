@@ -9,6 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "VideoLab",
+            type: .dynamic,
             targets: ["VideoLab"]
         )
     ],
@@ -21,7 +22,8 @@ let package = Package(
             sources: ["module.modulemap"],
             publicHeadersPath: ".",
             cSettings: [
-                .headerSearchPath(".")
+                .headerSearchPath("."),
+                .headerSearchPath("../Render/Operations")
             ]
         ),
         .target(
@@ -46,10 +48,12 @@ let package = Package(
                 .process("VideoLab.bundle")
             ],
             cSettings: [
-                .headerSearchPath("include")
+                .headerSearchPath("include"),
+                .headerSearchPath("Render/Operations")
             ],
             cxxSettings: [
-                .headerSearchPath("include")
+                .headerSearchPath("include"),
+                .headerSearchPath("Render/Operations")
             ],
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
