@@ -59,7 +59,9 @@ let package = Package(
             ],
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
-                .define("METAL_AVAILABLE")
+                .define("METAL_AVAILABLE"),
+                .define("DEBUG", .when(configuration: .debug)),
+                .define("RELEASE", .when(configuration: .release))
             ],
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
@@ -68,7 +70,9 @@ let package = Package(
                 .linkedFramework("CoreMedia"),
                 .linkedFramework("CoreGraphics"),
                 .linkedFramework("QuartzCore"),
-                .linkedFramework("CoreVideo")
+                .linkedFramework("CoreVideo"),
+                .linkedFramework("Photos"),
+                .linkedFramework("UIKit")
             ]
         )
     ],
