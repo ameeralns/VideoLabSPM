@@ -19,7 +19,10 @@ let package = Package(
             dependencies: [],
             path: "Sources/VideoLab/include",
             sources: ["module.modulemap"],
-            publicHeadersPath: "."
+            publicHeadersPath: ".",
+            cSettings: [
+                .headerSearchPath(".")
+            ]
         ),
         .target(
             name: "VideoLab",
@@ -31,8 +34,26 @@ let package = Package(
                 "include/OperationShaderTypes.h",
                 "include/module.modulemap"
             ],
+            sources: [
+                ".",
+                "Audio",
+                "Render",
+                "Source",
+                "Text",
+                "Video"
+            ],
             resources: [
                 .process("VideoLab.bundle")
+            ],
+            cSettings: [
+                .headerSearchPath("include")
+            ],
+            cxxSettings: [
+                .headerSearchPath("include")
+            ],
+            swiftSettings: [
+                .define("SWIFT_PACKAGE"),
+                .define("METAL_AVAILABLE")
             ],
             linkerSettings: [
                 .linkedFramework("AVFoundation"),
