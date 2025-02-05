@@ -48,11 +48,11 @@ let package = Package(
             ],
             cSettings: [
                 .headerSearchPath("include"),
-                .headerSearchPath(".")
+                .headerSearchPath("Render/Operations")
             ],
             cxxSettings: [
                 .headerSearchPath("include"),
-                .headerSearchPath(".")
+                .headerSearchPath("Render/Operations")
             ],
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
