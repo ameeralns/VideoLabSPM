@@ -36,6 +36,7 @@ let package = Package(
                 "include/module.modulemap"
             ],
             sources: [
+                ".",
                 "Audio",
                 "Video",
                 "Text",
@@ -57,6 +58,7 @@ let package = Package(
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
                 .define("METAL_AVAILABLE"),
+                .unsafeFlags(["-Xfrontend", "-enable-cross-import-overlays"]),
                 .define("DEBUG", .when(configuration: .debug)),
                 .define("RELEASE", .when(configuration: .release))
             ],
