@@ -22,8 +22,7 @@ let package = Package(
             sources: ["module.modulemap"],
             publicHeadersPath: ".",
             cSettings: [
-                .headerSearchPath("."),
-                .headerSearchPath("../Render/Operations")
+                .headerSearchPath(".")
             ]
         ),
         .target(
@@ -49,11 +48,11 @@ let package = Package(
             ],
             cSettings: [
                 .headerSearchPath("include"),
-                .headerSearchPath("Render/Operations")
+                .headerSearchPath(".")
             ],
             cxxSettings: [
                 .headerSearchPath("include"),
-                .headerSearchPath("Render/Operations")
+                .headerSearchPath(".")
             ],
             swiftSettings: [
                 .define("SWIFT_PACKAGE"),
