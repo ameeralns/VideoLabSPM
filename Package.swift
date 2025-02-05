@@ -39,10 +39,12 @@ let package = Package(
             sources: [
                 ".",
                 "Audio",
-                "Render",
-                "Source",
+                "Video",
                 "Text",
-                "Video"
+                "Source",
+                "Render",
+                "Render/Operations",
+                "Render/Base"
             ],
             resources: [
                 .process("VideoLab.bundle")
@@ -65,7 +67,8 @@ let package = Package(
                 .linkedFramework("MetalKit"),
                 .linkedFramework("CoreMedia"),
                 .linkedFramework("CoreGraphics"),
-                .linkedFramework("QuartzCore")
+                .linkedFramework("QuartzCore"),
+                .linkedFramework("CoreVideo")
             ]
         )
     ],
