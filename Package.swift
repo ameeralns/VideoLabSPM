@@ -37,12 +37,10 @@ let package = Package(
                 "include/module.modulemap"
             ],
             sources: [
-                ".",
                 "Audio",
                 "Video",
                 "Text",
                 "Source",
-                "Render",
                 "Render/Operations",
                 "Render/Base"
             ],
